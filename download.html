@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Download Serotonin Bootstrapper</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0a0f1c, #081629);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    color: #00aaff;
+    font-weight: 700;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+.download-btn {
+    position: relative;
+    display: inline-block;
+    padding: 15px 40px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #00aaff, #3399ff);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,170,255,0.4);
+}
+
+.download-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    transform: skewX(-25deg);
+    transition: all 0.5s ease;
+}
+
+.download-btn:hover::after {
+    left: 125%;
+}
+
+.download-btn:hover {
+    box-shadow: 0 12px 30px rgba(0,170,255,0.6);
+    transform: scale(1.05);
+}
+
+.subtext {
+    margin-top: 20px;
+    color: #99ccff;
+    font-size: 0.9rem;
+}
+</style>
+</head>
+<body>
+
+<h1>Download Serotonin Lite</h1>
+
+<!-- Update the href to your .exe file hosted in GitHub Pages -->
+<a href="https://skid-6969.github.io/serotonin-backend/serotonin-lite.exe" class="download-btn" download>Download .EXE</a>
+
+<p class="subtext">Click the button to download the latest Serotonin Lite.</p>
+
+</body>
+</html>

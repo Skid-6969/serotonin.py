@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Serotonin Status</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0a0f1c, #081629);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Loader */
+.loader {
+    border: 6px solid #1a1a1a;
+    border-top: 6px solid #00aaff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Card */
+.card {
+    display: none;
+    background: #0d1b33;
+    border-radius: 20px;
+    padding: 40px 60px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 170, 255, 0.4);
+    min-width: 300px;
+    transition: all 0.5s ease;
+}
+
+h1 { font-weight: 700; margin-bottom: 25px; letter-spacing: 1px; color: #00aaff; }
+
+.status {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-shadow: 0 0 5px #00aaff;
+    animation: pulse 1.5s infinite alternate;
+}
+.status.online { color: #00ffff; }
+.status.offline { color: #3399ff; }
+
+@keyframes pulse {
+    0% { text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff; }
+    100% { text-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff; }
+}
+
+.version { font-size: 1rem; color: #99ccff; margin-bottom: 20px; }
+
+/* Download button */
+.download-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 10px;
+    background: #00aaff;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.download-btn:hover {
+    background: #00ccff;
+    box-shadow: 0 0 15px #00aaff;
+}
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader"></div>
+
+<div class="card" id="statusCard">
+    <h1>Serotonin Status</h1>
+    <p class="status" id="status">Loading...</p>
+    <p class="version">Version: <span id="version">Loading...</span></p>
+    <a href="download.html" class="download-btn">Download Serotonin Lite</a>
+</div>
+
+<script>
+const loader = document.getElementById('loader');
+const card = document.getElementById('statusCard');
+const statusEl = document.getElementById('status');
+const versionEl = document.getElementById('version');
+
+async function fetchStatus() {
+    try {
+        const response = await fetch('https://skid-6969.github.io/serotonin-backend/status.json');
+        if (!response.ok) throw new Error('Network response not OK');
+        const data = await response.json();
+
+        statusEl.textContent = data.services;
+        statusEl.className = 'status ' + (data.services.toLowerCase() === "online" ? 'online' : 'offline');
+        versionEl.textContent = data.version;
+    } catch(err) {
+        console.error(err);
+        statusEl.textContent = 'ERROR';
+        statusEl.className = 'status offline';
+        versionEl.textContent = '-';
+    }
+}
+
+// Show card after 2 seconds
+setTimeout(() => {
+    loader.style.display = 'none';
+    card.style.display = 'block';
+    fetchStatus();
+    setInterval(fetchStatus, 5000);
+}, 2000);
+</script>
+
+</body>
+</html>
