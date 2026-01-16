@@ -18,7 +18,6 @@ body {
     overflow: hidden;
 }
 
-/* Loader */
 .loader {
     border: 6px solid #1a1a1a;
     border-top: 6px solid #00aaff;
@@ -29,7 +28,6 @@ body {
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* Card */
 .card {
     display: none;
     background: #0d1b33;
@@ -60,7 +58,6 @@ h1 { font-weight: 700; margin-bottom: 25px; letter-spacing: 1px; color: #00aaff;
 
 .version { font-size: 1rem; color: #99ccff; margin-bottom: 20px; }
 
-/* Download button */
 .download-btn {
     display: inline-block;
     padding: 10px 25px;
@@ -111,7 +108,6 @@ async function fetchStatus() {
     }
 }
 
-// Show card after 2 seconds
 setTimeout(() => {
     loader.style.display = 'none';
     card.style.display = 'block';
@@ -122,5 +118,6 @@ setTimeout(() => {
 
 </body>
 </html>
+
 
 
